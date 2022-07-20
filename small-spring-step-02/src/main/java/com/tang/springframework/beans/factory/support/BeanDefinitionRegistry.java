@@ -2,6 +2,9 @@ package com.tang.springframework.beans.factory.support;
 
 import com.tang.springframework.beans.factory.config.BeanDefinition;
 
+/**
+ * 注册BeanDefinition接口
+ */
 public interface BeanDefinitionRegistry {
 
     /**

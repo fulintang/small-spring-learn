@@ -4,7 +4,7 @@ import com.tang.springframework.beans.BeansException;
 import com.tang.springframework.beans.factory.config.BeanDefinition;
 
 /**
- * 实例化bean类
+ * 注入Bean实现类
  *
  * @author tangfulin
  * @version V3.0

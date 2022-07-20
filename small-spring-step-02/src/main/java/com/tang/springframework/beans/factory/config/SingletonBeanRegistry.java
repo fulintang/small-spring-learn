@@ -1,7 +1,7 @@
 package com.tang.springframework.beans.factory.config;
 
 /**
- * 单例注册接口
+ * 单例获取接口
  */
 public interface SingletonBeanRegistry {
 

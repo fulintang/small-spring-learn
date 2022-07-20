@@ -5,6 +5,7 @@ import com.tang.springframework.beans.factory.BeanFactory;
 import com.tang.springframework.beans.factory.config.BeanDefinition;
 
 /**
+ * 注入，获取主要业务控制抽象类
  * AbstractBeanFactory 首先继承了 DefaultSingletonBeanRegistry，也就具备了使用单例注册类方法。
  *
  * @author tangfulin
