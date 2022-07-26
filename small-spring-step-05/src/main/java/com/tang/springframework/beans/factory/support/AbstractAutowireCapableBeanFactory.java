@@ -32,9 +32,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
         Object bean;
         try {
-            bean = createBeanInstance(beanDefinition, beanName, args);
+            bean = this.createBeanInstance(beanDefinition, beanName, args);
             // 给Bean填充属性
-            applyPropertyValues(beanName, bean, beanDefinition);
+            this.applyPropertyValues(beanName, bean, beanDefinition);
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
         }
@@ -42,6 +42,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         return bean;
     }
 
+    /**
+     * 创建有参数的Bean
+     * 
+     * @param beanDefinition 类定义
+     * @param beanName 类名称
+     * @param args 类的构造函数的参数
+     * @return 创建好的Bean
+     */
     protected Object createBeanInstance(BeanDefinition beanDefinition, String beanName, Object[] args) {
         Constructor<?> constructorToUse = null;
         Class<?> beanClass = beanDefinition.getBeanClass();
