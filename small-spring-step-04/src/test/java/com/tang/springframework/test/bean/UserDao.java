@@ -1,4 +1,4 @@
-package com.tang.springframework.bean;
+package com.tang.springframework.test.bean;
 
 import java.util.HashMap;
 import java.util.Map;

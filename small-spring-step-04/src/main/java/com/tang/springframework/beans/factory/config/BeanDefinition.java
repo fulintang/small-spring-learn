@@ -2,8 +2,6 @@ package com.tang.springframework.beans.factory.config;
 
 import com.tang.springframework.beans.PropertyValues;
 
-import java.util.Collections;
-
 /**
  * Bean定义
  *
@@ -12,25 +10,26 @@ import java.util.Collections;
  * @since 2022/7/19 12:09
  */
 public class BeanDefinition {
-    
+
     private Class<?> beanClass;
-    
+
     private PropertyValues propertyValues;
 
     public BeanDefinition(Class<?> beanClass) {
         this.beanClass = beanClass;
+        propertyValues = new PropertyValues();
     }
 
     public BeanDefinition(Class<?> beanClass, PropertyValues propertyValues) {
         this.beanClass = beanClass;
-        this.propertyValues = propertyValues == null? new PropertyValues(): propertyValues;
+        this.propertyValues = propertyValues == null ? new PropertyValues() : propertyValues;
     }
 
     public Class<?> getBeanClass() {
         return beanClass;
     }
 
-    public void setBeanClass(Class<?> beanClass) {
+    public void setBeanClass(Class beanClass) {
         this.beanClass = beanClass;
     }
 
@@ -42,5 +41,5 @@ public class BeanDefinition {
         this.propertyValues = propertyValues;
         return this;
     }
-    
+
 }
