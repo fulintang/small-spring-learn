@@ -1,7 +1,5 @@
 package com.tang.springframework.beans.factory.config;
 
-import com.tang.springframework.beans.PropertyValues;
-
 /**
  * Bean定义
  *

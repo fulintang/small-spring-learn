@@ -1,6 +1,7 @@
-package com.tang.springframework.core.io;
+package com.tang.springframework.core.io.impl;
 
 import cn.hutool.core.lang.Assert;
+import com.tang.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.io.InputStream;

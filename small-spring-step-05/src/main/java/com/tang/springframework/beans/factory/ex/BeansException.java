@@ -1,4 +1,4 @@
-package com.tang.springframework.beans;
+package com.tang.springframework.beans.factory.ex;
 
 /**
  * Bean异常

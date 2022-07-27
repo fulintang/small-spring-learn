@@ -1,11 +1,13 @@
-package com.tang.springframework.beans.factory.support;
+package com.tang.springframework.beans.factory.support.factory.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.tang.springframework.beans.BeansException;
-import com.tang.springframework.beans.PropertyValue;
-import com.tang.springframework.beans.PropertyValues;
+import com.tang.springframework.beans.factory.ex.BeansException;
+import com.tang.springframework.beans.factory.config.PropertyValue;
+import com.tang.springframework.beans.factory.config.PropertyValues;
 import com.tang.springframework.beans.factory.config.BeanDefinition;
 import com.tang.springframework.beans.factory.config.BeanReference;
+import com.tang.springframework.beans.factory.support.registory.InstantiationStrategy;
+import com.tang.springframework.beans.factory.support.registory.impl.CglibSubclassingInstantiationStrategy;
 
 import java.lang.reflect.Constructor;
 

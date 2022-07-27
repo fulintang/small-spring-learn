@@ -1,4 +1,4 @@
-package com.tang.springframework.beans;
+package com.tang.springframework.beans.factory.config;
 
 import java.util.ArrayList;
 import java.util.List;

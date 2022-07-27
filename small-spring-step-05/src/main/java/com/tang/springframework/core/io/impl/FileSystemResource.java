@@ -1,4 +1,6 @@
-package com.tang.springframework.core.io;
+package com.tang.springframework.core.io.impl;
+
+import com.tang.springframework.core.io.Resource;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package com.tang.springframework.beans.factory.support;
+package com.tang.springframework.beans.factory.support.registory;
 
 import com.tang.springframework.beans.factory.config.BeanDefinition;
 

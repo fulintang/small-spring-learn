@@ -1,6 +1,6 @@
-package com.tang.springframework.beans.factory.support;
+package com.tang.springframework.beans.factory.support.registory.impl;
 
-import com.tang.springframework.beans.factory.config.SingletonBeanRegistry;
+import com.tang.springframework.beans.factory.support.registory.SingletonBeanRegistry;
 
 import java.util.HashMap;
 import java.util.Map;

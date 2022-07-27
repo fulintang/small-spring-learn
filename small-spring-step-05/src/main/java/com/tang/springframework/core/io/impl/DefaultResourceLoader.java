@@ -1,12 +1,14 @@
-package com.tang.springframework.core.io;
+package com.tang.springframework.core.io.impl;
 
 import cn.hutool.core.lang.Assert;
+import com.tang.springframework.core.io.Resource;
+import com.tang.springframework.core.io.ResourceLoader;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * TODO: 该类作用
+ * 默认的加载器
  *
  * @author tangfulin
  * @version V3.0
@@ -18,8 +20,8 @@ public class DefaultResourceLoader implements ResourceLoader {
      * 虽然 DefaultResourceLoader 类实现的过程简单，但这也是设计模式约定的具体结果
      * ，像是这里不会让外部调用放知道过多的细节，而是仅关心具体调用结果即可。
      *
-     * @param location
-     * @return
+     * @param location 路径
+     * @return 输入流
      */
     @Override
     public Resource getResource(String location) {
