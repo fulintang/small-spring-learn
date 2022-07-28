@@ -1,6 +1,6 @@
-package com.tang.springframework.beans.factory.support.factory;
+package com.tang.springframework.beans.factory;
 
-import com.tang.springframework.beans.factory.ex.BeansException;
+import com.tang.springframework.beans.BeansException;
 
 public interface BeanFactory {
     

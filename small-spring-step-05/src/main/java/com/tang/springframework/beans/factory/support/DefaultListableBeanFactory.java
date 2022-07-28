@@ -1,9 +1,9 @@
-package com.tang.springframework.beans.factory.support.registory.impl;
+package com.tang.springframework.beans.factory.support;
 
-import com.tang.springframework.beans.factory.ex.BeansException;
+import com.tang.springframework.beans.BeansException;
 import com.tang.springframework.beans.factory.config.BeanDefinition;
-import com.tang.springframework.beans.factory.support.registory.BeanDefinitionRegistry;
-import com.tang.springframework.beans.factory.support.factory.impl.AbstractAutowireCapableBeanFactory;
+import com.tang.springframework.beans.factory.support.BeanDefinitionRegistry;
+import com.tang.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +30,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
         beanDefinitionMap.put(beanName, beanDefinition);
     }
 
+    @Override
+    public boolean containsBeanDefinition(String beanName) {
+        return beanDefinitionMap.containsKey(beanName);
+    }
+
     /**
      * 获取Bean定义
      *
@@ -38,7 +43,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
      * @throws BeansException 获取异常
      */
     @Override
-    protected BeanDefinition getBeanDefinition(String beanName) throws BeansException {
+    public BeanDefinition getBeanDefinition(String beanName) throws BeansException {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
         if (beanDefinition == null)
             throw new BeansException("No bean named '" + beanName + "' is defined");

@@ -1,4 +1,4 @@
-package com.tang.springframework.beans.factory.support.registory;
+package com.tang.springframework.beans.factory.config;
 
 /**
  * 单例注册接口

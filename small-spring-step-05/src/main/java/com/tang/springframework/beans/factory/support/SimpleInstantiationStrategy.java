@@ -1,8 +1,8 @@
-package com.tang.springframework.beans.factory.support.registory.impl;
+package com.tang.springframework.beans.factory.support;
 
-import com.tang.springframework.beans.factory.ex.BeansException;
+import com.tang.springframework.beans.BeansException;
 import com.tang.springframework.beans.factory.config.BeanDefinition;
-import com.tang.springframework.beans.factory.support.registory.InstantiationStrategy;
+import com.tang.springframework.beans.factory.support.InstantiationStrategy;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

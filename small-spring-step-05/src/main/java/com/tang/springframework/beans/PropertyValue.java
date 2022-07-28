@@ -1,4 +1,4 @@
-package com.tang.springframework.beans.factory.config;
+package com.tang.springframework.beans;
 
 public class PropertyValue {
     

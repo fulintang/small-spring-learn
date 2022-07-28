@@ -1,9 +1,8 @@
-package com.tang.springframework.beans.factory.support.factory.impl;
+package com.tang.springframework.beans.factory.support;
 
-import com.tang.springframework.beans.factory.ex.BeansException;
-import com.tang.springframework.beans.factory.support.factory.BeanFactory;
+import com.tang.springframework.beans.BeansException;
+import com.tang.springframework.beans.factory.BeanFactory;
 import com.tang.springframework.beans.factory.config.BeanDefinition;
-import com.tang.springframework.beans.factory.support.registory.impl.DefaultSingletonBeanRegistry;
 
 /**
  * AbstractBeanFactory 首先继承了 DefaultSingletonBeanRegistry，也就具备了使用单例注册类方法。

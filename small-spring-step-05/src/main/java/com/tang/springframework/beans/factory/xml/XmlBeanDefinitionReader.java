@@ -1,9 +1,13 @@
 package com.tang.springframework.beans.factory.xml;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
-import com.tang.springframework.beans.factory.ex.BeansException;
-import com.tang.springframework.beans.factory.support.reader.impl.AbstractBeanDefinitionReader;
-import com.tang.springframework.beans.factory.support.registory.BeanDefinitionRegistry;
+import com.tang.springframework.beans.BeansException;
+import com.tang.springframework.beans.PropertyValue;
+import com.tang.springframework.beans.factory.config.BeanDefinition;
+import com.tang.springframework.beans.factory.config.BeanReference;
+import com.tang.springframework.beans.factory.support.AbstractBeanDefinitionReader;
+import com.tang.springframework.beans.factory.support.BeanDefinitionRegistry;
 import com.tang.springframework.core.io.Resource;
 import com.tang.springframework.core.io.ResourceLoader;
 import org.w3c.dom.Document;
@@ -36,12 +40,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         try {
             InputStream inputStream = resource.getInputStream();
             doLoadBeanDefinitions(inputStream);
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             throw new BeansException("IOException parsing XML document from " + resource, e);
         }
     }
-    
+
     @Override
     public void loadBeanDefinitions(Resource... resources) throws BeansException {
         for (Resource resource : resources) {
@@ -56,23 +60,53 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         loadBeanDefinitions(resource);
     }
 
-    private void doLoadBeanDefinitions(InputStream inputStream) {
+    private void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException {
         Document document = XmlUtil.readXML(inputStream);
         Element root = document.getDocumentElement();
         NodeList childNodes = root.getChildNodes();
 
-        int length = childNodes.getLength();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0, lenI = childNodes.getLength(); i < lenI; i++) {
             // 判断元素
             if (!(childNodes.item(i) instanceof Element)) continue;
             // 判断对象
             if (!"bean".equals(childNodes.item(i).getNodeName())) continue;
-            
+
             // 解析标签
             Element bean = (Element) childNodes.item(i);
             String id = bean.getAttribute("id");
             String name = bean.getAttribute("name");
             String className = bean.getAttribute("class");
+            // 获取Class，方便获取类中的名称
+            Class<?> clazz = Class.forName(className);
+            // 优先级 id > name
+            String beanName = StrUtil.isNotEmpty(id) ? id : name;
+            if (StrUtil.isEmpty(beanName)) {
+                beanName = StrUtil.lowerFirst(clazz.getSimpleName());
+            }
+
+            // 定义Bean
+            BeanDefinition beanDefinition = new BeanDefinition(clazz);
+            // 读取属性并填充
+            for (int j = 0, lenJ = bean.getChildNodes().getLength(); j < lenJ; j++) {
+                if (!(bean.getChildNodes().item(j) instanceof Element)) continue;
+                if (!"property".equals(bean.getChildNodes().item(j).getNodeName())) continue;
+                // 解析标签：property
+                Element property = (Element) bean.getChildNodes().item(j);
+                String attrName = property.getAttribute("name");
+                String attrValue = property.getAttribute("value");
+                String attrRef = property.getAttribute("ref");
+                // 获取属性值: 引入对象、值对象
+                Object value = StrUtil.isNotEmpty(attrRef) ? new BeanReference(attrRef) : attrValue;
+                // 创建属性信息
+                PropertyValue propertyValue = new PropertyValue(attrName, value);
+                beanDefinition.getPropertyValues().addPropertyValue(propertyValue);
+            }
+            if (getRegistry().containsBeanDefinition(beanName)) {
+                throw new BeansException("Duplicate beanName[" + beanName + "] is not allowed");
+            }
+
+            getRegistry().registerBeanDefinition(beanName, beanDefinition);
+
         }
 
     }

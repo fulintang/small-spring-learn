@@ -1,7 +1,5 @@
-package com.tang.springframework.beans.factory.support.reader.impl;
+package com.tang.springframework.beans.factory.support;
 
-import com.tang.springframework.beans.factory.support.reader.BeanDefinitionReader;
-import com.tang.springframework.beans.factory.support.registory.BeanDefinitionRegistry;
 import com.tang.springframework.core.io.ResourceLoader;
 import com.tang.springframework.core.io.impl.DefaultResourceLoader;
 
