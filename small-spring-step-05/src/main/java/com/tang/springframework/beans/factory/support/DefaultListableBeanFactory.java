@@ -1,9 +1,8 @@
 package com.tang.springframework.beans.factory.support;
 
 import com.tang.springframework.beans.BeansException;
+import com.tang.springframework.beans.factory.ConfigurableListableBeanFactory;
 import com.tang.springframework.beans.factory.config.BeanDefinition;
-import com.tang.springframework.beans.factory.support.BeanDefinitionRegistry;
-import com.tang.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.Map;
  * @version V3.0
  * @since 2022/7/19 15:26
  */
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 
     private final Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
@@ -33,6 +32,23 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     @Override
     public boolean containsBeanDefinition(String beanName) {
         return beanDefinitionMap.containsKey(beanName);
+    }
+
+    @Override
+    public <T> Map<String, T> getBeansOfType(Class<T> type) throws BeansException {
+        Map<String, T> result = new HashMap<>();
+        beanDefinitionMap.forEach((beanName, beanDefinition) -> {
+            Class<?> beanClass = beanDefinition.getBeanClass();
+            if (type.isAssignableFrom(beanClass)) {
+                result.put(beanName, (T) getBean(beanName));
+            }
+        });
+        return result;
+    }
+
+    @Override
+    public String[] getBeanDefinitionNames() {
+        return beanDefinitionMap.keySet().toArray(new String[0]);
     }
 
     /**
