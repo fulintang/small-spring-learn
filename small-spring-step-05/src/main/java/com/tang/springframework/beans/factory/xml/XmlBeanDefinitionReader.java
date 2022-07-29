@@ -27,11 +27,11 @@ import java.io.InputStream;
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 
-    protected XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
+    public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
         super(registry);
     }
 
-    protected XmlBeanDefinitionReader(BeanDefinitionRegistry registry, ResourceLoader resourceLoader) {
+    public XmlBeanDefinitionReader(BeanDefinitionRegistry registry, ResourceLoader resourceLoader) {
         super(registry, resourceLoader);
     }
 
